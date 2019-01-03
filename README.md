@@ -2,7 +2,7 @@
 
 _Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/temporal/TemporalAdjusters.html
 
-# project description
+# preview
 * `TemporalAdjuster dayOfWeekInMonth(int ordinal, DayOfWeek dayOfWeek)` - 
 Returns the day-of-week in month adjuster, which returns a new date in the same month with the ordinal day-of-week.
     ```
