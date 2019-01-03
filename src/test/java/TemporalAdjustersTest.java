@@ -44,42 +44,56 @@ public class TemporalAdjustersTest {
     
     @Test
     public void firstDayOfNextYear() {
-
+        assertThat(LocalDate.parse("2019-01-12").with(TemporalAdjusters.firstDayOfNextYear()),
+                is(LocalDate.parse("2020-01-01")));
     }
 
     @Test
     public void firstDayOfYear() {
-
+        assertThat(LocalDate.parse("2019-01-12").with(TemporalAdjusters.firstDayOfYear()),
+                is(LocalDate.parse("2019-01-01")));
     }
 
     @Test
     public void firstInMonth() {
-
+        assertThat(LocalDate.parse("2019-01-01").with(TemporalAdjusters.firstInMonth(DayOfWeek.SATURDAY)),
+                is(LocalDate.parse("2019-01-05")));
     }
 
     @Test
     public void lastDayOfMonth() {
-
+        assertThat(LocalDate.parse("2019-01-01").with(TemporalAdjusters.lastDayOfMonth()),
+                is(LocalDate.parse("2019-01-31")));
     }
 
     @Test
     public void lastDayOfYear() {
-
+        assertThat(LocalDate.parse("2019-01-01").with(TemporalAdjusters.lastDayOfYear()),
+                is(LocalDate.parse("2019-12-31")));
     }
 
     @Test
     public void lastInMonth() {
-
+        assertThat(LocalDate.parse("2019-01-01").with(TemporalAdjusters.lastInMonth(DayOfWeek.FRIDAY)),
+                is(LocalDate.parse("2019-01-25")));
     }
 
     @Test
     public void next() {
-
+        assertThat(LocalDate.parse("2019-01-03").with(TemporalAdjusters.next(DayOfWeek.FRIDAY)),
+                is(LocalDate.parse("2019-01-04")));
+        
+        assertThat(LocalDate.parse("2019-01-04").with(TemporalAdjusters.next(DayOfWeek.FRIDAY)),
+                is(LocalDate.parse("2019-01-11")));
     }
 
     @Test
     public void nextOrSame() {
-
+        assertThat(LocalDate.parse("2019-01-03").with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY)),
+                is(LocalDate.parse("2019-01-04")));
+        
+        assertThat(LocalDate.parse("2019-01-04").with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY)),
+                is(LocalDate.parse("2019-01-04")));
     }
 
     @Test
@@ -89,12 +103,20 @@ public class TemporalAdjustersTest {
 
     @Test
     public void previous() {
+        assertThat(LocalDate.parse("2019-01-04").with(TemporalAdjusters.previous(DayOfWeek.FRIDAY)),
+                is(LocalDate.parse("2018-12-28")));
 
+        assertThat(LocalDate.parse("2019-01-11").with(TemporalAdjusters.previous(DayOfWeek.FRIDAY)),
+                is(LocalDate.parse("2019-01-04")));
     }
 
     @Test
     public void previousOrSame() {
+        assertThat(LocalDate.parse("2019-01-05").with(TemporalAdjusters.previousOrSame(DayOfWeek.FRIDAY)),
+                is(LocalDate.parse("2019-01-04")));
 
+        assertThat(LocalDate.parse("2019-01-04").with(TemporalAdjusters.previousOrSame(DayOfWeek.FRIDAY)),
+                is(LocalDate.parse("2019-01-04")));
     }
 }
 
