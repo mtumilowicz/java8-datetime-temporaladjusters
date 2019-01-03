@@ -117,3 +117,67 @@ object is returned.
     ```
     
 # project description
+We will show how to implement custom adjusters (`CustomAdjusters`):
+* find the next working day
+    ```
+    static TemporalAdjuster nextWorkingDay() {
+        return temporal -> {
+            var workingDay = temporal;
+            switch (DayOfWeek.of(temporal.get(DAY_OF_WEEK))) {
+                case SUNDAY: {
+                    workingDay = temporal.plus(1, DAYS);
+                    break;
+                }
+                case SATURDAY: {
+                    workingDay = temporal.plus(2, DAYS);
+                    break;
+                }
+            }
+            return workingDay;
+        };
+    }
+    ```
+* find the first working day of month
+    ```
+    static TemporalAdjuster firstWorkingDayOfMonth() {
+        return temporal -> nextWorkingDay().adjustInto(temporal.with(TemporalAdjusters.firstDayOfMonth()));
+    }
+    ```
+* tests
+    ```
+    @Test
+    public void firstWorkingDayOfMonth_starts_not_weekend() {
+        assertThat(LocalDate.parse("2019-01-15").with(CustomAdjusters.firstWorkingDayOfMonth()), 
+                is(LocalDate.parse("2019-01-01")));
+    }
+    
+    @Test
+    public void firstWorkingDayOfMonth_starts_saturday() {
+        assertThat(LocalDate.parse("2019-06-15").with(CustomAdjusters.firstWorkingDayOfMonth()),
+                is(LocalDate.parse("2019-06-03")));
+    }
+    
+    @Test
+    public void firstWorkingDayOfMonth_starts_sunday() {
+        assertThat(LocalDate.parse("2019-09-15").with(CustomAdjusters.firstWorkingDayOfMonth()),
+                is(LocalDate.parse("2019-09-02")));
+    }
+    
+    @Test
+    public void firstWorkingDayOfMonth_weekend() {
+        assertThat(LocalDate.parse("2019-01-03").with(CustomAdjusters.nextWorkingDay()),
+                is(LocalDate.parse("2019-01-03")));
+    }
+    
+    @Test
+    public void firstWorkingDayOfMonth_saturday() {
+        assertThat(LocalDate.parse("2019-01-05").with(CustomAdjusters.nextWorkingDay()),
+                is(LocalDate.parse("2019-01-07")));
+    }
+    
+    @Test
+    public void firstWorkingDayOfMonth_sunday() {
+        assertThat(LocalDate.parse("2019-01-06").with(CustomAdjusters.nextWorkingDay()),
+                is(LocalDate.parse("2019-01-07")));
+    }
+    ```
