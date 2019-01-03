@@ -69,7 +69,8 @@ Returns the last in month adjuster, which returns a new date in the same month w
             is(LocalDate.parse("2019-01-25")));
     ```
 * `TemporalAdjuster next(DayOfWeek dayOfWeek)` - 
-Returns the next day-of-week adjuster, which adjusts the date to the first occurrence of the specified day-of-week after the date being adjusted.
+Returns the next day-of-week adjuster, which adjusts the date to the first occurrence of the specified day-of-week 
+after the date being adjusted.
     ```
     assertThat(LocalDate.parse("2019-01-03").with(TemporalAdjusters.next(DayOfWeek.FRIDAY)),
             is(LocalDate.parse("2019-01-04")));
@@ -78,7 +79,8 @@ Returns the next day-of-week adjuster, which adjusts the date to the first occur
             is(LocalDate.parse("2019-01-11")));
     ```
 * `TemporalAdjuster nextOrSame(DayOfWeek dayOfWeek)` - 
-Returns the next-or-same day-of-week adjuster, which adjusts the date to the first occurrence of the specified day-of-week after the date being adjusted unless it is already on that day in which case the same object is returned.
+Returns the next-or-same day-of-week adjuster, which adjusts the date to the first occurrence of the specified 
+day-of-week after the date being adjusted unless it is already on that day in which case the same object is returned.
     ```
     assertThat(LocalDate.parse("2019-01-03").with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY)),
             is(LocalDate.parse("2019-01-04")));
@@ -93,7 +95,8 @@ Obtains a TemporalAdjuster that wraps a date adjuster.
             is(LocalDate.parse("2019-01-29")));
     ```
 * `TemporalAdjuster previous(DayOfWeek dayOfWeek)` - 
-Returns the previous day-of-week adjuster, which adjusts the date to the first occurrence of the specified day-of-week before the date being adjusted.
+Returns the previous day-of-week adjuster, which adjusts the date to the first occurrence of the specified 
+day-of-week before the date being adjusted.
     ```
     assertThat(LocalDate.parse("2019-01-04").with(TemporalAdjusters.previous(DayOfWeek.FRIDAY)),
             is(LocalDate.parse("2018-12-28")));
@@ -102,7 +105,9 @@ Returns the previous day-of-week adjuster, which adjusts the date to the first o
             is(LocalDate.parse("2019-01-04")));
     ```
 * `TemporalAdjuster previousOrSame(DayOfWeek dayOfWeek)` - 
-Returns the previous-or-same day-of-week adjuster, which adjusts the date to the first occurrence of the specified day-of-week before the date being adjusted unless it is already on that day in which case the same object is returned.
+Returns the previous-or-same day-of-week adjuster, which adjusts the date to the first occurrence of the 
+specified day-of-week before the date being adjusted unless it is already on that day in which case the same 
+object is returned.
     ```
     assertThat(LocalDate.parse("2019-01-05").with(TemporalAdjusters.previousOrSame(DayOfWeek.FRIDAY)),
             is(LocalDate.parse("2019-01-04")));
