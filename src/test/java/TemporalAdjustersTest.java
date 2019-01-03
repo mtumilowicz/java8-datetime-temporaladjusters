@@ -98,7 +98,8 @@ public class TemporalAdjustersTest {
 
     @Test
     public void ofDateAdjuster() {
-
+        assertThat(LocalDate.parse("2019-01-01").with(TemporalAdjusters.ofDateAdjuster(date -> date.plusWeeks(4))),
+                is(LocalDate.parse("2019-01-29")));
     }
 
     @Test
