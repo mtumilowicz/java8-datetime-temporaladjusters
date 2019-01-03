@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/mtumilowicz/java8-datetime-temporaladjusters.svg?branch=master)](https://travis-ci.com/mtumilowicz/java8-datetime-temporaladjusters)
+
 # java8-datetime-temporaladjusters
 
 _Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/temporal/TemporalAdjusters.html
